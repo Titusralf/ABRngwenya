@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABR Ngwenya Business Enterprise - Quality Tombstones & Memorials</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #7d8c99;
+            --accent: #8e7f5e;
+            --light: #f8f9fa;
+            --dark: #1a252f;
+            --text: #333333;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            padding: 0.8rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            height: 60px;
+            width: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo img {
+            height: 100%;
+            width: auto;
+            max-width: 200px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a.active {
+            color: var(--accent);
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent);
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            min-height: calc(100vh - 160px);
+        }
+
+        .section {
+            padding: 4rem 2rem;
+            display: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Home Section */
+        #home {
+            text-align: center;
+            padding: 6rem 2rem;
+            background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.9)), url('Angel.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #home h1 {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        #home p {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary);
+        }
+
+        /* About Section */
+        #about {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        #about h2 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 300;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-image {
+            background-color: #f0f0f0;
+            height: 300px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            font-size: 1.1rem;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Products Section */
+        #products {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        #products h2 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 300;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            background: white;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-name {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin: 0.5rem 0;
+        }
+
+        .product-description {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .product-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            margin-top: auto;
+        }
+
+        .product-button:hover {
+            background-color: var(--accent);
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        #contact h2 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 300;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            padding: 1rem;
+        }
+
+        .contact-info h3 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            width: 20px;
+        }
+
+        .contact-form {
+            padding: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .submit-button:hover {
+            background-color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .footer-column h3 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p, .footer-column a {
+            color: #ccc;
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content, .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                gap: 1rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            #home h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .section {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo">
+                <!-- Logo will be loaded here -->
+                <img src="logo.jpg" alt="ABR Ngwenya Business Enterprise Logo" onerror="this.style.display='none'; this.parentNode.innerHTML='ABR Ngwenya'; this.parentNode.style.color='var(--primary)'; this.parentNode.style.fontWeight='bold'; this.parentNode.style.fontSize='1.5rem';">
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="nav-link active" data-section="home">Home</a></li>
+                <li><a href="#" class="nav-link" data-section="about">About Us</a></li>
+                <li><a href="#" class="nav-link" data-section="products">Products</a></li>
+                <li><a href="#" class="nav-link" data-section="contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <h1>ABR Ngwenya Business Enterprise</h1>
+            <p>Creating lasting tributes to honor your loved ones with dignity and respect</p>
+            <p>For over 40 years, we've been providing families with beautifully crafted tombstones and memorials</p>
+            <a href="#" class="cta-button" data-section="products">View Our Products</a>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="section">
+            <h2>About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Our Story</h3>
+                    <p>Founded in 1982, ABR Ngwenya Business Enterprise has been a family-owned business dedicated to helping families create meaningful and lasting memorials for their loved ones. Our craftsmen combine traditional techniques with modern technology to create pieces that stand the test of time.</p>
+                    
+                    <h3>Our Mission</h3>
+                    <p>We believe that every life deserves to be remembered with dignity and beauty. Our mission is to provide families with memorials that not only honor their loved ones but also bring comfort and peace during difficult times.</p>
+                    
+                    <h3>Why Choose Us?</h3>
+                    <p>With over four decades of experience, we understand the importance of quality, attention to detail, and compassionate service. We work closely with each family to create a memorial that truly reflects the life and personality of their loved one.</p>
+                </div>
+                <div class="about-image">
+                    <img src="image9.png" alt="Our Workshop" onerror="this.style.display='none'; this.parentNode.innerHTML='<i class=\"fas fa-monument\" style=\"font-size: 4rem; color: #ccc;\"></i>';">
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="section">
+            <h2>Our Products</h2>
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="image2.png" alt="Classic Granite Tombstone" onerror="this.style.display='none'; this.parentNode.innerHTML='<i class=\"fas fa-tombstone-alt\" style=\"font-size: 3rem;\"></i>';">
+                    </div>
+                    <h3 class="product-name">Classic Granite</h3>
+                    <p class="product-price">R 8,500</p>
+                    <p class="product-description">Traditional granite tombstone with elegant engraving. Available in various colors and finishes.</p>
+                    <button class="product-button">Inquire About This Product</button>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="image5.png" alt="Marble Memorial" onerror="this.style.display='none'; this.parentNode.innerHTML='<i class=\"fas fa-cross\" style=\"font-size: 3rem;\"></i>';">
+                    </div>
+                    <h3 class="product-name">Marble Memorial</h3>
+                    <p class="product-price">R 12,000</p>
+                    <p class="product-description">Premium marble memorial with custom designs and intricate details. A timeless choice.</p>
+                    <button class="product-button">Inquire About This Product</button>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="image3.png" alt="Modern Slate Tombstone" onerror="this.style.display='none'; this.parentNode.innerHTML='<i class=\"fas fa-monument\" style=\"font-size: 3rem;\"></i>';">
+                    </div>
+                    <h3 class="product-name">Modern Slate</h3>
+                    <p class="product-price">R 9,500</p>
+                    <p class="product-description">Contemporary design with laser etching for precise and detailed inscriptions.</p>
+                    <button class="product-button">Inquire About This Product</button>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="image6.png" alt="Family Monument" onerror="this.style.display='none'; this.parentNode.innerHTML='<i class=\"fas fa-heart\" style=\"font-size: 3rem;\"></i>';">
+                    </div>
+                    <h3 class="product-name">Family Monument</h3>
+                    <p class="product-price">R 25,000</p>
+                    <p class="product-description">Large family memorial with space for multiple inscriptions and custom artwork.</p>
+                    <button class="product-button">Inquire About This Product</button>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="image7.png" alt="Eco-Friendly Memorial" onerror="this.style.display='none'; this.parentNode.innerHTML='<i class=\"fas fa-leaf\" style=\"font-size: 3rem;\"></i>';">
+                    </div>
+                    <h3 class="product-name">Eco-Friendly Memorial</h3>
+                    <p class="product-price">R 7,000</p>
+                    <p class="product-description">Environmentally conscious memorial made from sustainable materials.</p>
+                    <button class="product-button">Inquire About This Product</button>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="image8.png" alt="Angel Sculpture" onerror="this.style.display='none'; this.parentNode.innerHTML='<i class=\"fas fa-angel\" style=\"font-size: 3rem;\"></i>';">
+                    </div>
+                    <h3 class="product-name">Angel Sculpture</h3>
+                    <p class="product-price">R 18,000</p>
+                    <p class="product-description">Beautifully carved angel sculpture as a centerpiece for your memorial.</p>
+                    <button class="product-button">Inquire About This Product</button>
+                </div>
+                
+                <!-- Product 7 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="image9.png" alt="Bench Memorial" onerror="this.style.display='none'; this.parentNode.innerHTML='<i class=\"fas fa-book\" style=\"font-size: 3rem;\"></i>';">
+                    </div>
+                    <h3 class="product-name">Bench Memorial</h3>
+                    <p class="product-price">R 15,000</p>
+                    <p class="product-description">Functional memorial bench where visitors can sit and reflect.</p>
+                    <button class="product-button">Inquire About This Product</button>
+                </div>
+                
+                <!-- Product 8 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="image10.png" alt="Custom Design Memorial" onerror="this.style.display='none'; this.parentNode.innerHTML='<i class=\"fas fa-dove\" style=\"font-size: 3rem;\"></i>';">
+                    </div>
+                    <h3 class="product-name">Custom Design</h3>
+                    <p class="product-price">Starting at R 10,000</p>
+                    <p class="product-description">Completely custom memorial designed to your specifications and preferences.</p>
+                    <button class="product-button">Inquire About This Product</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2>Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <p>123 Memorial Lane</p>
+                                <p>Quiet Valley, QV 12345</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <p>(555) 123-4567</p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <p>info@abrngwenya.co.za</p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <p>Monday - Friday: 9am - 5pm</p>
+                                <p>Saturday: 10am - 2pm</p>
+                                <p>Sunday: Closed</p>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Service Interested In</label>
+                            <select id="service" name="service">
+                                <option value="">Select a service</option>
+                                <option value="tombstone">Tombstone</option>
+                                <option value="memorial">Memorial</option>
+                                <option value="engraving">Engraving</option>
+                                <option value="consultation">Consultation</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>ABR Ngwenya Business Enterprise</h3>
+                <p>Creating lasting tributes to honor your loved ones with dignity and respect since 1982.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <a href="#" data-section="home">Home</a>
+                <a href="#" data-section="about">About Us</a>
+                <a href="#" data-section="products">Products</a>
+                <a href="#" data-section="contact">Contact</a>
+            </div>
+            <div class="footer-column">
+                <h3>Our Services</h3>
+                <a href="#">Tombstone Design</a>
+                <a href="#">Memorial Creation</a>
+                <a href="#">Engraving Services</a>
+                <a href="#">Installation</a>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Info</h3>
+                <p>123 Memorial Lane</p>
+                <p>Quiet Valley, QV 12345</p>
+                <p>(555) 123-4567</p>
+                <p>info@abrngwenya.co.za</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 ABR Ngwenya Business Enterprise. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.section');
+            const ctaButton = document.querySelector('.cta-button');
+            
+            // Set home as active by default
+            showSection('home');
+            
+            // Add click event to navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('data-section');
+                    
+                    // Update active nav link
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show selected section
+                    showSection(sectionId);
+                });
+            });
+            
+            // Add click event to CTA button
+            if (ctaButton) {
+                ctaButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('data-section');
+                    
+                    // Update active nav link
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    document.querySelector(`[data-section="${sectionId}"]`).classList.add('active');
+                    
+                    // Show selected section
+                    showSection(sectionId);
+                });
+            }
+            
+            // Add click events to footer links
+            const footerLinks = document.querySelectorAll('.footer-column a');
+            footerLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.getAttribute('data-section')) {
+                        e.preventDefault();
+                        const sectionId = this.getAttribute('data-section');
+                        
+                        // Update active nav link
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        document.querySelector(`[data-section="${sectionId}"]`).classList.add('active');
+                        
+                        // Show selected section
+                        showSection(sectionId);
+                    }
+                });
+            });
+            
+            // Add click events to product buttons
+            const productButtons = document.querySelectorAll('.product-button');
+            productButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active nav link
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    document.querySelector('[data-section="contact"]').classList.add('active');
+                    
+                    // Show contact section
+                    showSection('contact');
+                });
+            });
+            
+            // Form submission
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your message. We will get back to you soon.');
+                    this.reset();
+                });
+            }
+            
+            // Function to show selected section
+            function showSection(sectionId) {
+                // Hide all sections
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Show the selected section
+                document.getElementById(sectionId).classList.add('active');
+                
+                // Scroll to top of the page
+                window.scrollTo(0, 0);
+            }
+        });
+    </script>
+</body>
+</html>
